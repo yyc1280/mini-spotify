@@ -46,7 +46,7 @@ a {
 }
 
 .header {
-  height: 80px;
+  height: 50px;
   display: flex;
   margin-bottom: 10px;
   align-items: center;
@@ -68,6 +68,7 @@ a {
 }
 
 .login > a {
+  cursor: pointer;
   padding: 20px;
   border-radius: 99px;
   background-color: #1db954;
@@ -166,7 +167,7 @@ a {
   display: flex;
   .home__image {
     width: 240px;
-    height: 320px;
+    height: 300px;
     cursor: pointer;
     border-radius: 10px;
     background: #181818;
@@ -179,6 +180,7 @@ a {
       color: white;
     }
     p {
+      line-height: 3rem;
       color: #c7c7c7;
       overflow: hidden;
       white-space: nowrap;

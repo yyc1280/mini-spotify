@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react"
-
 import Sidebar from "../components/Sidebar"
 import SearchBar from "../components/SearchBar"
 import Header from "../components/Header"

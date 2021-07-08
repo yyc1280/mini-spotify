@@ -4,13 +4,10 @@ export const initialState = {
   playing: false,
   item: null,
   playingUri: null,
-
-  // token:
-  //   "BQDfTsGYzYKx4kVoLXGNnWaLWtlKYWV0I5y9USjKjC-DEzPn00Bsd1vvIWqnMGMi9KjdTwBMm_yy4dtuUnrjqqiIW8bdDgUCFx-9xI7opXaW0QwXAws_SVFZhgSaAPYSMasT-ZlHkJ0AlTSKQWMK1bWZlWM12PUynfkJ7ELwnycHI026YinLwbT-GRght0ONFsFCqOMJWw",
 }
 
 const reducer = (state, action) => {
-  console.log(action)
+  // console.log(action)
   switch (action.type) {
     case "SET_USER":
       return {

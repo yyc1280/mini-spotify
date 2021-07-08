@@ -20,7 +20,7 @@ function Home() {
         <h2>你的播放清單</h2>
         <div className="home__list">
           {playlists?.items?.map(item => (
-            <Link to={`/playlists/${item.id}`}>
+            <Link key={item.id} to={`/playlists/${item.id}`}>
               <div className="home__image">
                 <img
                   style={{ width: "200px" }}
@@ -28,7 +28,7 @@ function Home() {
                   alt=""
                 />
                 <h3>{item.name}</h3>
-                <br />
+
                 <div className="text"></div>
                 <p>{item.description}</p>
               </div>

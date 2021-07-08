@@ -8,14 +8,19 @@ function RecentlyPlayed() {
   const [played, setPlayed] = useState([])
 
   useEffect(() => {
-    spotify.getMyRecentlyPlayedTracks().then(res => {
-      const filteredTracks = res.items.filter((item, i) => {
-        if (i === 0) return true
-        return item.track.id !== res.items[i - 1].track.id
-      })
+    spotify
+      .getMyRecentlyPlayedTracks()
+      .then(res => {
+        const filteredTracks = res.items.filter((item, i) => {
+          if (i === 0) return true
+          return item.track.id !== res.items[i - 1].track.id
+        })
 
-      setPlayed(filteredTracks)
-    })
+        setPlayed(filteredTracks)
+      })
+      .catch(err => {
+        window.location.reload()
+      })
   }, [])
 
   return (

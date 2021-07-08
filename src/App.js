@@ -18,13 +18,34 @@ function App() {
   useEffect(() => {
     const hash = getTokenFromUrl()
     window.location.hash = ""
-    const _token = hash.access_token
-    // const _token =
-    //   "BQCPHoUz1-jWIbvaOyC2KLblsQjphy_sXCflPxPMZg8d34mxZusvXtto0Q_jZd85yQYVQlZ46VVl1C1wGEap52MOqDMJKNutEE7zBoYKdL7qbAhezuJ_Ws6R5PLwFZ7XoLy8PGYSFUyOrLDcnQXYFNyOI9j9-jr_SMczvIGkXqrLOw-Q0GsO-1t9h1Pc_XkLLGn3gWwABQ"
+
+    const { access_token, expires_in } = hash
+    const local = localStorage.getItem("token")
+
+    let _token
+    const expireTime = Date.now() / 1000 + parseInt(expires_in)
+
+    if (!local) {
+      if (access_token && expires_in) {
+        _token = access_token
+        localStorage.setItem(
+          "token",
+          JSON.stringify({
+            _token,
+            expireTime,
+          })
+        )
+      }
+    } else {
+      if (JSON.parse(local).expireTime < Date.now() / 1000) {
+        localStorage.clear()
+        window.location.reload()
+      }
+
+      _token = JSON.parse(local)._token
+    }
 
     if (_token) {
-      console.log(_token)
-
       dispatch({
         type: "SET_TOKEN",
         token: _token,
@@ -36,12 +57,17 @@ function App() {
 
       spotify.setAccessToken(_token)
 
-      spotify.getMe().then(user => {
-        dispatch({
-          type: "SET_USER",
-          user: user,
+      spotify
+        .getMe()
+        .then(user => {
+          dispatch({
+            type: "SET_USER",
+            user: user,
+          })
         })
-      })
+        .catch(err => {
+          window.location.reload()
+        })
 
       spotify.getUserPlaylists().then(playlists => {
         dispatch({
@@ -62,6 +88,7 @@ function App() {
               <Route path="/search" exact component={Search} />
               <Route path="/playlists/:id" exact component={PlayList} />
               <Route path="/recently" exact component={Recently} />
+              <Route path="/login" exact component={Login} />
             </Switch>
           </BrowserRouter>
         </div>
