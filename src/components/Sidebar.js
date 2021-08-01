@@ -3,6 +3,7 @@ import SidebarOption from "../components/SidebarOption"
 import HomeIcon from "@material-ui/icons/Home"
 import SearchIcon from "@material-ui/icons/Search"
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic"
+import FavoriteIcon from "@material-ui/icons/Favorite"
 import { useDataLayerValue } from "../DataLayer"
 import { Link } from "react-router-dom"
 import "../style/all.css"
@@ -25,6 +26,9 @@ const Sidebar = () => {
       </Link>
       <Link className="link" to="/recently">
         <SidebarOption Icon={LibraryMusicIcon} title="Recently Played" />
+      </Link>
+      <Link className="link" to="/saved">
+        <SidebarOption Icon={FavoriteIcon} title="Saved Tracks" />
       </Link>
 
       <br />

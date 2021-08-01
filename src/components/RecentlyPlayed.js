@@ -4,7 +4,7 @@ import SongRow from "./SongRow"
 import "../style/all.css"
 
 function RecentlyPlayed() {
-  const [{ spotify }, dispatch] = useDataLayerValue()
+  const [{ spotify }] = useDataLayerValue()
   const [played, setPlayed] = useState([])
 
   useEffect(() => {

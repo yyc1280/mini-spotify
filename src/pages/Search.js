@@ -7,7 +7,7 @@ import { useDataLayerValue } from "../DataLayer"
 import "../style/all.css"
 
 function Search() {
-  const [{ search }, dispatch] = useDataLayerValue()
+  const [{ search }] = useDataLayerValue()
 
   return (
     <div className="search">
@@ -21,7 +21,8 @@ function Search() {
           <Header />
         </div>
         <div className="search__result">
-          {search && search.map(track => <SongRow track={track} />)}
+          {search &&
+            search.map(track => <SongRow key={track.id} track={track} />)}
         </div>
       </div>
     </div>

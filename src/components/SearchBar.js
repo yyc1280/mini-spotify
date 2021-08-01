@@ -32,7 +32,6 @@ function SearchBar() {
 
   useEffect(() => {
     if (dbSearch) {
-      console.log(dbSearch)
       spotify
         .searchTracks(dbSearch)
         .then(res => {

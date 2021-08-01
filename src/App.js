@@ -7,8 +7,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Home from "./pages/Home"
 import Search from "./pages/Search"
 import Recently from "./pages/Recently"
+import Saved from "./pages/Saved"
 import PlayList from "./components/PlayList"
 import Player from "./components/Player"
+import { SaveAltRounded } from "@material-ui/icons"
 
 const spotify = new SpotifyWebApi()
 
@@ -38,10 +40,10 @@ function App() {
       }
     } else {
       if (JSON.parse(local).expireTime < Date.now() / 1000) {
+        //token expired
         localStorage.clear()
         window.location.reload()
       }
-
       _token = JSON.parse(local)._token
     }
 
@@ -66,13 +68,20 @@ function App() {
           })
         })
         .catch(err => {
-          window.location.reload()
+          console.log(err)
         })
 
       spotify.getUserPlaylists().then(playlists => {
         dispatch({
           type: "SET_PLAYLISTS",
           playlists,
+        })
+      })
+
+      spotify.getMySavedTracks().then(tracks => {
+        dispatch({
+          type: "SET_SAVEDTRACKS",
+          savedTracks: tracks.items,
         })
       })
     }
@@ -88,6 +97,7 @@ function App() {
               <Route path="/search" exact component={Search} />
               <Route path="/playlists/:id" exact component={PlayList} />
               <Route path="/recently" exact component={Recently} />
+              <Route path="/saved" exact component={Saved} />
               <Route path="/login" exact component={Login} />
             </Switch>
           </BrowserRouter>

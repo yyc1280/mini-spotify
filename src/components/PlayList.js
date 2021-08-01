@@ -22,7 +22,6 @@ function PlayList() {
   }, [id])
 
   const handlePlay = () => {
-    console.log(uriArr)
     dispatch({
       type: "SET_PLAYING",
       playingUri: uris,
