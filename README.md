@@ -1,3 +1,15 @@
+https://mini-spotify.vercel.app/
+
+This is a little Spotify clone using React context API and useReducer.
+<br />
+After login it'll probably look like this ↓↓↓
+<br />
+
+![alt text](https://github.com/yyc1280/mini-spotify/blob/main/1.png?raw=true)
+![alt text](https://github.com/yyc1280/mini-spotify/blob/main/2.png?raw=true)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
